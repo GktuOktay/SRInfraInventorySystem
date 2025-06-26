@@ -1,0 +1,59 @@
+using System;
+
+namespace SRInfraInventorySystem.Application.DTOs
+{
+    /// <summary>
+    /// Sunucu kullanım geçmişi bilgilerini transfer etmek için kullanılan DTO.
+    /// Performans metriklerini içerir.
+    /// </summary>
+    public class ServerUsageHistoryDto
+    {
+        /// <summary>
+        /// Kullanım geçmişi kaydının benzersiz tanımlayıcısı
+        /// </summary>
+        public Guid Id { get; set; }
+        
+        /// <summary>
+        /// Kullanım tarihi
+        /// </summary>
+        public DateTime UsageDate { get; set; }
+        
+        /// <summary>
+        /// CPU kullanım yüzdesi
+        /// </summary>
+        public double CpuUsage { get; set; }
+        
+        /// <summary>
+        /// RAM kullanım yüzdesi
+        /// </summary>
+        public double MemoryUsage { get; set; }
+        
+        /// <summary>
+        /// Disk kullanım yüzdesi
+        /// </summary>
+        public double DiskUsage { get; set; }
+        
+        /// <summary>
+        /// Ağ kullanımı (MB/s)
+        /// </summary>
+        public double NetworkUsage { get; set; }
+        
+        /// <summary>
+        /// Kullanım hakkında ek notlar
+        /// </summary>
+        public string Notes { get; set; }
+        
+        /// <summary>
+        /// Kullanım geçmişinin ait olduğu sunucunun ID'si
+        /// </summary>
+        public Guid ServerId { get; set; }
+        
+        /// <summary>
+        /// Kullanım geçmişinin ait olduğu sunucunun adı
+        /// </summary>
+        public string ServerName { get; set; }
+        
+        public DateTime CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+    }
+}
