@@ -14,7 +14,7 @@ namespace SRInfraInventorySystem.API.Controllers
     /// Sunucu yönetimi için API endpoint'leri
     /// </summary>
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/servers")]
     [Tags("Servers")]
     [Produces("application/json")]
     public class ServerController : ControllerBase

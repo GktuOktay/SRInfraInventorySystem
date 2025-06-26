@@ -9,7 +9,7 @@ namespace SRInfraInventorySystem.API.Controllers
     /// Personel yönetimi için API endpoint'leri
     /// </summary>
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/personnel")]
     [Tags("Personnel")]
     [Produces("application/json")]
     public class PersonnelController : ControllerBase

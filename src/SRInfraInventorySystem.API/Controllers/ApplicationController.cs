@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace SRInfraInventorySystem.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/applications")]
     public class ApplicationController : ControllerBase
     {
         [HttpGet]

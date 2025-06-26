@@ -9,7 +9,7 @@ namespace SRInfraInventorySystem.API.Controllers
     /// Departman yönetimi için API endpoint'leri
     /// </summary>
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/departments")]
     [Tags("Departments")]
     [Produces("application/json")]
     public class DepartmentController : ControllerBase

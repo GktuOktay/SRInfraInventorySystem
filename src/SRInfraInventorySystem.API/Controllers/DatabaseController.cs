@@ -9,7 +9,7 @@ namespace SRInfraInventorySystem.API.Controllers
     /// Veritabanı yönetimi için API endpoint'leri
     /// </summary>
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/databases")]
     [Tags("Databases")]
     [Produces("application/json")]
     public class DatabaseController : ControllerBase
