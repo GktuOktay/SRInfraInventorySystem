@@ -26,5 +26,14 @@ namespace SRInfraInventorySystem.Core.Common
         /// Entity'nin silinip silinmediğini belirten flag (soft delete için)
         /// </summary>
         public bool IsDeleted { get; set; }
+
+        /// <summary>
+        /// Yerel saati döndürür
+        /// </summary>
+        /// <returns>Yerel saat</returns>
+        protected static DateTime GetLocalTime()
+        {
+            return DateTime.Now;
+        }
     }
 } 

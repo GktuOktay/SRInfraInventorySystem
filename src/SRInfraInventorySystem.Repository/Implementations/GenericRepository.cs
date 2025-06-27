@@ -50,10 +50,10 @@ namespace SRInfraInventorySystem.Repository.Implementations
 
         public async Task<T> UpdateAsync(T entity)
         {
-            // UpdatedAt alanını otomatik güncelle
+            // UpdatedAt alanını otomatik güncelle (yerel saat)
             if (entity is BaseEntity baseEntity)
             {
-                baseEntity.UpdatedAt = DateTime.UtcNow;
+                baseEntity.UpdatedAt = DateTime.Now;
             }
             
             _dbSet.Update(entity);
@@ -67,7 +67,7 @@ namespace SRInfraInventorySystem.Repository.Implementations
             if (entity is BaseEntity baseEntity)
             {
                 baseEntity.IsDeleted = true;
-                baseEntity.UpdatedAt = DateTime.UtcNow;
+                baseEntity.UpdatedAt = DateTime.Now;
                 _dbSet.Update(entity);
                 await _context.SaveChangesAsync();
             }

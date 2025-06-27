@@ -33,7 +33,7 @@ namespace SRInfraInventorySystem.API.Controllers
         /// <response code="400">Geçersiz filtre parametreleri</response>
         /// <response code="500">Sunucu hatası</response>
         [HttpGet]
-        [ProducesResponseType(typeof(ApiResult<List<DepartmentDto>>), 200)]
+        [ProducesResponseType(typeof(ApiResult<PagedResult<DepartmentDto>>), 200)]
         [ProducesResponseType(typeof(ApiResult<string>), 400)]
         [ProducesResponseType(typeof(ApiResult<string>), 500)]
         public async Task<IActionResult> GetAllDepartments(

@@ -16,7 +16,7 @@ namespace SRInfraInventorySystem.Core.Entities
         public string Name { get; set; }
         
         /// <summary>
-        /// Departmanın açıklaması (opsiyonel)
+        /// Departmanın açıklaması
         /// </summary>
         public string? Description { get; set; }
         
@@ -38,7 +38,7 @@ namespace SRInfraInventorySystem.Core.Entities
         /// <summary>
         /// Departmanın oluşturulma tarihi
         /// </summary>
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         // Navigation Properties
         

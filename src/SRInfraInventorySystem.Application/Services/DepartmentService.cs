@@ -178,7 +178,7 @@ namespace SRInfraInventorySystem.Application.Services
                 existingDepartment.ParentDepartmentId = updateDepartmentDto.ParentDepartmentId;
                 existingDepartment.ManagerPersonnelId = updateDepartmentDto.ManagerPersonnelId;
                 existingDepartment.IsActive = updateDepartmentDto.IsActive;
-                existingDepartment.UpdatedAt = DateTime.UtcNow;
+                existingDepartment.UpdatedAt = DateTime.Now;
 
                 var updatedDepartment = await _departmentRepository.UpdateAsync(existingDepartment);
                 var departmentDto = _mapper.Map<DepartmentDto>(updatedDepartment);
@@ -294,7 +294,7 @@ namespace SRInfraInventorySystem.Application.Services
             }
         }
 
-        public async Task<ApiResult<IEnumerable<DepartmentDto>>> GetFilteredDepartmentsAsync(
+        public async Task<ApiResult<PagedResult<DepartmentDto>>> GetFilteredDepartmentsAsync(
             string? name = null, 
             bool? isActive = null, 
             int pageNumber = 1, 
@@ -324,6 +324,7 @@ namespace SRInfraInventorySystem.Application.Services
                 
                 // Hiyerarşik sırala
                 var sortedDepartments = FlattenDepartments(departmentDtos);
+                var totalCount = sortedDepartments.Count();
 
                 // Sayfalama uygula
                 var pagedDepartments = sortedDepartments
@@ -331,12 +332,15 @@ namespace SRInfraInventorySystem.Application.Services
                     .Take(pageSize)
                     .ToList();
                 
-                return ApiResult<IEnumerable<DepartmentDto>>.SuccessResult(pagedDepartments, 
-                    $"Toplam {filteredDepartments.Count()} departman bulundu, sayfa {pageNumber}/{Math.Ceiling((double)filteredDepartments.Count() / pageSize)} gösteriliyor");
+                // PagedResult oluştur
+                var pagedResult = new PagedResult<DepartmentDto>(pagedDepartments, totalCount, pageNumber, pageSize);
+                
+                return ApiResult<PagedResult<DepartmentDto>>.SuccessResult(pagedResult, 
+                    $"Toplam {totalCount} departman bulundu, sayfa {pageNumber}/{pagedResult.TotalPages} gösteriliyor");
             }
             catch (Exception ex)
             {
-                return ApiResult<IEnumerable<DepartmentDto>>.ErrorResult($"Departmanlar filtrelenirken hata oluştu: {ex.Message}");
+                return ApiResult<PagedResult<DepartmentDto>>.ErrorResult($"Departmanlar filtrelenirken hata oluştu: {ex.Message}");
             }
         }
 
@@ -349,7 +353,7 @@ namespace SRInfraInventorySystem.Application.Services
                     return ApiResult<DepartmentDto>.ErrorResult("Departman bulunamadı");
 
                 department.ManagerPersonnelId = assignManagerDto.ManagerPersonnelId;
-                department.UpdatedAt = DateTime.UtcNow;
+                department.UpdatedAt = DateTime.Now;
 
                 var updatedDepartment = await _departmentRepository.UpdateAsync(department);
                 var departmentDto = _mapper.Map<DepartmentDto>(updatedDepartment);

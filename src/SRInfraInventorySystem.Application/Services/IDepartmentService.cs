@@ -20,7 +20,7 @@ namespace SRInfraInventorySystem.Application.Services
         Task<ApiResult<IEnumerable<DepartmentDto>>> GetRootDepartmentsAsync();
         Task<ApiResult<IEnumerable<DepartmentDropdownDto>>> GetRootDepartmentsForSelectListAsync();
         Task<ApiResult<IEnumerable<DepartmentDto>>> GetSubDepartmentsAsync(Guid parentId);
-        Task<ApiResult<IEnumerable<DepartmentDto>>> GetFilteredDepartmentsAsync(
+        Task<ApiResult<PagedResult<DepartmentDto>>> GetFilteredDepartmentsAsync(
             string? name = null, 
             bool? isActive = null, 
             int pageNumber = 1, 

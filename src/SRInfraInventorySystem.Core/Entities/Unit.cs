@@ -33,7 +33,7 @@ namespace SRInfraInventorySystem.Core.Entities
         /// <summary>
         /// Birimin oluşturulma tarihi
         /// </summary>
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
         
         // Foreign Keys
         public Guid? SupervisorPersonnelId { get; set; }

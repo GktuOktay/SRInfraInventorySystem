@@ -20,9 +20,9 @@ namespace SRInfraInventorySystem.Application.DTOs
         public string Name { get; set; }
         
         /// <summary>
-        /// Departmanın açıklaması
+        /// Departman açıklaması
         /// </summary>
-        public string Description { get; set; }
+        public string? Description { get; set; }
         
         /// <summary>
         /// Üst departmanın ID'si (hiyerarşik yapı için)
