@@ -177,7 +177,6 @@ namespace SRInfraInventorySystem.Application.Services
                 existingDepartment.Description = updateDepartmentDto.Description;
                 existingDepartment.ParentDepartmentId = updateDepartmentDto.ParentDepartmentId;
                 existingDepartment.ManagerPersonnelId = updateDepartmentDto.ManagerPersonnelId;
-                existingDepartment.IsActive = updateDepartmentDto.IsActive;
                 existingDepartment.UpdatedAt = DateTime.Now;
 
                 var updatedDepartment = await _departmentRepository.UpdateAsync(existingDepartment);
@@ -296,7 +295,6 @@ namespace SRInfraInventorySystem.Application.Services
 
         public async Task<ApiResult<PagedResult<DepartmentDto>>> GetFilteredDepartmentsAsync(
             string? name = null, 
-            bool? isActive = null, 
             int pageNumber = 1, 
             int pageSize = 10)
         {
@@ -312,11 +310,6 @@ namespace SRInfraInventorySystem.Application.Services
                 {
                     filteredDepartments = filteredDepartments.Where(d => 
                         d.Name.ToLower().Contains(name.ToLower()));
-                }
-
-                if (isActive.HasValue)
-                {
-                    filteredDepartments = filteredDepartments.Where(d => d.IsActive == isActive.Value);
                 }
 
                 // Önce DTOs'a çevir

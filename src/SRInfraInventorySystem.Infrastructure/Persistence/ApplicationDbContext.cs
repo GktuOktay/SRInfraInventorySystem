@@ -121,7 +121,6 @@ namespace SRInfraInventorySystem.Infrastructure.Persistence
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Name).IsRequired().HasMaxLength(100);
                 entity.Property(e => e.Description).HasMaxLength(500);
-                entity.Property(e => e.IsActive).HasDefaultValue(true);
 
                 // Parent Department ilişkisi
                 entity.HasOne(d => d.ParentDepartment)
@@ -147,7 +146,8 @@ namespace SRInfraInventorySystem.Infrastructure.Persistence
                 entity.Property(e => e.Title).IsRequired().HasMaxLength(100);
                 entity.Property(e => e.IdentityNumber).IsRequired().HasMaxLength(20);
                 entity.Property(e => e.UserName).IsRequired().HasMaxLength(50);
-                entity.HasOne(e => e.Department).WithMany(e => e.Personnel).HasForeignKey(e => e.DepartmentId);
+                entity.HasOne(e => e.Department).WithMany(e => e.Personnel).HasForeignKey(e => e.DepartmentId)
+                    .OnDelete(DeleteBehavior.Restrict);
             });
 
             }

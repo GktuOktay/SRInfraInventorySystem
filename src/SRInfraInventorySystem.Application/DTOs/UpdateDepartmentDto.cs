@@ -27,10 +27,5 @@ namespace SRInfraInventorySystem.Application.DTOs
         /// Yeni departman yöneticisinin personel ID'si
         /// </summary>
         public Guid? ManagerPersonnelId { get; set; }
-        
-        /// <summary>
-        /// Departmanın aktif durumu
-        /// </summary>
-        public bool IsActive { get; set; } = true;
     }
 } 

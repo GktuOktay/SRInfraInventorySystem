@@ -14,7 +14,6 @@ namespace SRInfraInventorySystem.Application.DTOs
         public Guid? ParentDepartmentId { get; set; }
         public Guid? ManagerPersonnelId { get; set; }
         public string ManagerPersonnelName { get; set; }
-        public bool IsActive { get; set; }
         public int PersonnelCount { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }

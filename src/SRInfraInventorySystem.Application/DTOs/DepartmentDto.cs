@@ -45,16 +45,6 @@ namespace SRInfraInventorySystem.Application.DTOs
         public string ManagerPersonnelName { get; set; }
         
         /// <summary>
-        /// Departmanın aktif olup olmadığını belirten flag
-        /// </summary>
-        public bool IsActive { get; set; }
-        
-        /// <summary>
-        /// Departmanda çalışan personel sayısı
-        /// </summary>
-        public int PersonnelCount { get; set; }
-        
-        /// <summary>
         /// Departmanın oluşturulma tarihi
         /// </summary>
         public DateTime CreatedDate { get; set; }
@@ -63,6 +53,11 @@ namespace SRInfraInventorySystem.Application.DTOs
         /// Departmanın son güncellenme tarihi
         /// </summary>
         public DateTime? UpdatedDate { get; set; }
+        
+        /// <summary>
+        /// Departmanda çalışan personel sayısı
+        /// </summary>
+        public int PersonnelCount { get; set; }
         
         /// <summary>
         /// Alt departmanların listesi

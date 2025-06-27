@@ -24,11 +24,6 @@ namespace SRInfraInventorySystem.Application.DTOs
         public string Description { get; set; }
         
         /// <summary>
-        /// Departmanın aktif olup olmadığını belirten flag
-        /// </summary>
-        public bool IsActive { get; set; }
-        
-        /// <summary>
         /// Departmanın oluşturulma tarihi
         /// </summary>
         public DateTime CreatedDate { get; set; }

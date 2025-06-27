@@ -31,11 +31,6 @@ namespace SRInfraInventorySystem.Core.Entities
         public Guid? ManagerPersonnelId { get; set; }
         
         /// <summary>
-        /// Departmanın aktif olup olmadığını belirten flag
-        /// </summary>
-        public bool IsActive { get; set; }
-        
-        /// <summary>
         /// Departmanın oluşturulma tarihi
         /// </summary>
         public DateTime CreatedAt { get; set; } = DateTime.Now;

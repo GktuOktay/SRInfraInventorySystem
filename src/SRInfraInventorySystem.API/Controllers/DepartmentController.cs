@@ -25,7 +25,6 @@ namespace SRInfraInventorySystem.API.Controllers
         /// Tüm departmanları listeler ve filtreleme yapar
         /// </summary>
         /// <param name="name">Departman adına göre filtreleme (kısmi eşleşme)</param>
-        /// <param name="isActive">Aktif duruma göre filtreleme (true/false)</param>
         /// <param name="pageNumber">Sayfa numarası (varsayılan: 1)</param>
         /// <param name="pageSize">Sayfa boyutu (varsayılan: 10, maksimum: 100)</param>
         /// <returns>Filtrelenmiş departmanların listesi</returns>
@@ -38,7 +37,6 @@ namespace SRInfraInventorySystem.API.Controllers
         [ProducesResponseType(typeof(ApiResult<string>), 500)]
         public async Task<IActionResult> GetAllDepartments(
             [FromQuery] string? name = null,
-            [FromQuery] bool? isActive = null,
             [FromQuery] int pageNumber = 1,
             [FromQuery] int pageSize = 10)
         {
@@ -53,7 +51,7 @@ namespace SRInfraInventorySystem.API.Controllers
 
                 // Filtreleme parametrelerini service'e geç
                 var result = await _departmentService.GetFilteredDepartmentsAsync(
-                    name, isActive, pageNumber, pageSize);
+                    name, pageNumber, pageSize);
                 
                 return result.Success ? Ok(result) : BadRequest(result);
             }

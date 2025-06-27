@@ -22,10 +22,5 @@ namespace SRInfraInventorySystem.Application.DTOs
         /// Üst departmanın ID'si (hiyerarşik yapı için, opsiyonel)
         /// </summary>
         public Guid? ParentDepartmentId { get; set; }
-        
-        /// <summary>
-        /// Departmanın aktif olup olmadığını belirten flag (varsayılan: true)
-        /// </summary>
-        public bool IsActive { get; set; } = true;
     }
 } 

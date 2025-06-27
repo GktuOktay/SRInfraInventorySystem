@@ -22,7 +22,6 @@ namespace SRInfraInventorySystem.Application.Services
         Task<ApiResult<IEnumerable<DepartmentDto>>> GetSubDepartmentsAsync(Guid parentId);
         Task<ApiResult<PagedResult<DepartmentDto>>> GetFilteredDepartmentsAsync(
             string? name = null, 
-            bool? isActive = null, 
             int pageNumber = 1, 
             int pageSize = 10);
         Task<ApiResult<DepartmentDto>> AssignManagerAsync(AssignManagerDto assignManagerDto);

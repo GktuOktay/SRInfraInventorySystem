@@ -26,11 +26,6 @@ namespace SRInfraInventorySystem.Core.Entities
         public Guid DepartmentId { get; set; }
         
         /// <summary>
-        /// Birimin aktif olup olmadığını belirten flag
-        /// </summary>
-        public bool IsActive { get; set; }
-        
-        /// <summary>
         /// Birimin oluşturulma tarihi
         /// </summary>
         public DateTime CreatedAt { get; set; } = DateTime.Now;
