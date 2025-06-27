@@ -232,14 +232,37 @@ namespace SRInfraInventorySystem.Application.Services
         {
             try
             {
-                var departments = await _departmentRepository.GetRootDepartmentsAsync();
-                var dropdownDtos = _mapper.Map<IEnumerable<DepartmentDropdownDto>>(departments);
-                return ApiResult<IEnumerable<DepartmentDropdownDto>>.SuccessResult(dropdownDtos);
+                // Tüm departmanları hiyerarşik yapıda getir
+                var allDepartments = await _departmentRepository.GetDepartmentsWithDetailsAsync();
+                var departmentDtos = _mapper.Map<List<DepartmentDropdownDto>>(allDepartments);
+                
+                // Hiyerarşik yapıyı oluştur
+                var hierarchicalDepartments = BuildHierarchicalDropdown(departmentDtos, null);
+                
+                return ApiResult<IEnumerable<DepartmentDropdownDto>>.SuccessResult(hierarchicalDepartments);
             }
             catch (Exception ex)
             {
                 return ApiResult<IEnumerable<DepartmentDropdownDto>>.ErrorResult($"Ana departmanlar getirilirken hata oluştu: {ex.Message}");
             }
+        }
+
+        private List<DepartmentDropdownDto> BuildHierarchicalDropdown(List<DepartmentDropdownDto> allDepartments, Guid? parentId)
+        {
+            return allDepartments
+                .Where(d => GetParentId(d, allDepartments) == parentId)
+                .OrderBy(d => d.Name, StringComparer.CurrentCultureIgnoreCase)
+                .Select(d =>
+                {
+                    d.SubDepartments = BuildHierarchicalDropdown(allDepartments, d.Id);
+                    return d;
+                })
+                .ToList();
+        }
+
+        private Guid? GetParentId(DepartmentDropdownDto department, List<DepartmentDropdownDto> allDepartments)
+        {
+            return department.ParentDepartmentId;
         }
 
         private async Task<List<DepartmentDropdownDto>> MapSubDepartmentsRecursiveAsync(IEnumerable<Department> subDepartments)

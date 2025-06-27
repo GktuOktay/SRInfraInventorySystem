@@ -20,6 +20,11 @@ namespace SRInfraInventorySystem.Application.DTOs
         public string Name { get; set; }
         
         /// <summary>
+        /// Üst departmanın ID'si (null ise ana departman)
+        /// </summary>
+        public Guid? ParentDepartmentId { get; set; }
+        
+        /// <summary>
         /// Alt departmanların listesi (hiyerarşik yapı için)
         /// </summary>
         public List<DepartmentDropdownDto> SubDepartments { get; set; }
