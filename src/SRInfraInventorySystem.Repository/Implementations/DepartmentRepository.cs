@@ -49,6 +49,16 @@ namespace SRInfraInventorySystem.Repository.Implementations
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<Department>> GetAllDepartmentsWithDetailsAsync()
+        {
+            return await _dbSet
+                .Include(d => d.ParentDepartment)
+                .Include(d => d.SubDepartments)
+                .Include(d => d.ManagerPersonnel)
+                .Include(d => d.Personnel)
+                .ToListAsync();
+        }
+
         public async Task<Department> GetDepartmentWithDetailsByIdAsync(Guid id)
         {
             return await _dbSet

@@ -18,6 +18,12 @@ namespace SRInfraInventorySystem.Repository.Interfaces
         Task<IEnumerable<Department>> GetDepartmentsWithDetailsAsync();
         
         /// <summary>
+        /// Tüm departmanları detaylarıyla birlikte getirir
+        /// </summary>
+        /// <returns>Detaylı departman listesi</returns>
+        Task<IEnumerable<Department>> GetAllDepartmentsWithDetailsAsync();
+        
+        /// <summary>
         /// Belirtilen ID'ye sahip departmanı detaylarıyla birlikte getirir
         /// </summary>
         /// <param name="id">Departman ID'si</param>

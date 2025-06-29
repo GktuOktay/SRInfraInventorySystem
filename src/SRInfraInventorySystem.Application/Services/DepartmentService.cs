@@ -295,13 +295,14 @@ namespace SRInfraInventorySystem.Application.Services
 
         public async Task<ApiResult<PagedResult<DepartmentDto>>> GetFilteredDepartmentsAsync(
             string? name = null, 
+            bool? isDeleted = null,
             int pageNumber = 1, 
             int pageSize = 10)
         {
             try
             {
-                // Tüm departmanları al
-                var allDepartments = await _departmentRepository.GetDepartmentsWithDetailsAsync();
+                // Tüm departmanları al (silinmiş olanlar dahil)
+                var allDepartments = await _departmentRepository.GetAllDepartmentsWithDetailsAsync();
 
                 // Filtreleme uygula
                 var filteredDepartments = allDepartments.AsQueryable();
@@ -310,6 +311,12 @@ namespace SRInfraInventorySystem.Application.Services
                 {
                     filteredDepartments = filteredDepartments.Where(d => 
                         d.Name.ToLower().Contains(name.ToLower()));
+                }
+
+                // IsDeleted filtresi uygula
+                if (isDeleted.HasValue)
+                {
+                    filteredDepartments = filteredDepartments.Where(d => d.IsDeleted == isDeleted.Value);
                 }
 
                 // Önce DTOs'a çevir

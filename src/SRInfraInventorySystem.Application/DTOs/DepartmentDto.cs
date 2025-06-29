@@ -55,6 +55,11 @@ namespace SRInfraInventorySystem.Application.DTOs
         public DateTime? UpdatedDate { get; set; }
         
         /// <summary>
+        /// Departmanın silinip silinmediğini belirten flag
+        /// </summary>
+        public bool IsDeleted { get; set; }
+        
+        /// <summary>
         /// Departmanda çalışan personel sayısı
         /// </summary>
         public int PersonnelCount { get; set; }
